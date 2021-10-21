@@ -19,14 +19,13 @@ app.use(express.json());
 //   response.status(200).send('This is a test route');
 // });
 
-// app.use(bookRoute);
-// app.use(movieRoute);
+// app.use('/book', bookRoute);
+// app.use('/movie', movieRoute);
 
 // app.use('*', notFoundErrorHandler);
 // app.use(unexpectedErrorHandler);
 
 // app.use(logger);
-
 
 module.exports = {
   server: app,
