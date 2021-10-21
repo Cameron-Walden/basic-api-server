@@ -1,8 +1,7 @@
 'use strict';
 
 module.exports = (request, response) => {
-  response.status(404).send({
-    error: 404,
-    message: 'Not Found',
-  });
+  console.log('404 error');
+  response.status(404);
+  response.end();
 }

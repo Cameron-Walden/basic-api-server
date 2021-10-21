@@ -1,8 +1,7 @@
 'use strict';
 
 module.exports = (error, request, response, next) => {
-  response.status(500).json({
-    status: 500,
-    message: error,
-  });
+  console.log(error);
+  response.status(500);
+  response.end();
 }

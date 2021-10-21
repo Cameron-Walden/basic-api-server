@@ -9,7 +9,7 @@ const Book = (sequelize, DataTypes) => sequelize.define('Book', {
   },
   author: {
     type: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   }
 });
 
