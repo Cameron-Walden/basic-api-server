@@ -39,30 +39,27 @@ async function createBook(request, response) {
   response.status(200).send(createBookData);
 }
 
-// async function updateBook(request, response) {
-//   const id = request.params.id;
-//   const bookObject = request.body;
-//   const bookData = await data.book.findOne({
-//     where: {
-//       id: id
-//     }
-//   });
-//   const updatedBook = await bookData.update(bookObject);
-//   response.status(200).send(updatedBook)
-// }
-
 async function updateBook(request, response) {
   const id = request.params.id;
-  const bookObject =  request.body;
-  const bookData = await data.book.findOne(id);
+  const bookObject = request.body;
+  const bookData = await data.book.findOne({
+    where: {
+      id: id
+    }
+  });
   const updatedBook = await bookData.update(bookObject);
   response.status(200).send(updatedBook)
 }
 
 async function deleteBook(request, response) {
   const id = request.params.id;
-  const deletingBook = await Book.destroy(id);
-  response.status(200).send(deletingBook)
+  const deletedBook = await Book.destroy({
+    where: {
+      id: id
+    } 
+  });
+  response.status(200).send(deletedBook)
 }
+
 
 module.exports = router;
