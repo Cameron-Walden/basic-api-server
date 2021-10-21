@@ -3,6 +3,8 @@
 const { db } = require('../src/models/index.js');
 const supertest = require('supertest');
 const server = require('../src/server.js');
+const { expect } = require('@jest/globals');
+
 
 const request = supertest(server.server);
 
@@ -31,11 +33,11 @@ describe('Testing our express server', () => {
   //The correct status codes and returned data for each REST route(movie/book)
   it('should respond with a 200 for GET /movie', async () => {
     const response = await request.get('/movie');
-  expect(response.status).toBe(200);
+    expect(response.status).toBe(200);
   });
 
 
-  it('should respond with a 200 for GET book', async () => {
+  it('should respond with a 200 for GET /book', async () => {
     const response = await request.get('/book');
     expect(response.status).toBe(200);
   });
@@ -47,7 +49,7 @@ describe('Testing our express server', () => {
       genre: 'horror',
     });
     expect(response.status).toBe(200);
-    expect(response.body.title).toEqual('A Nightmare on Elm Street')
+    expect(response.body.title).toBe('A Nightmare on Elm Street')
   });
 
   it('should respond with a 200 for POST on /book', async () => {
@@ -56,29 +58,29 @@ describe('Testing our express server', () => {
       author: 'Alan Moore',
     });
     expect(response.status).toBe(200);
-    expect(response.body.title).toEqual('From Hell')
+    expect(response.body.title).toBe('From Hell')
   });
   
   // Read a list of records using GET
   it('should respond with a 200 for GET /movie/:id', async () => {
     const response = await request.get('/movie/:id');
     expect(response.status).toBe(200);
-    expect(response.body.title).toEqual('A Nightmare on Elm Street')
+    expect(response.body.title).toBe('A Nightmare on Elm Street')
   });
 
   it('should respond with a 200 for GET on /book/:id', async () => {
     const response = await request.get('/book/:id');
     expect(response.status).toBe(200);
-    expect(response.body.title).toEqual('From Hell');
+    expect(response.body.title).toBe('From Hell');
   });
 
   // Update a record using PUT
   it('should respond with a 200 for PUT on /movie/:id', async () => {
-    const response = await (await request.put('/movie/:id')).send({
+    const response = await request.put('/movie/:id').send({
       title: 'updating',
     });
     expect(response.status).toBe(200);
-    expect(response.body.title).toEqual('updating')
+    expect(response.body.title).toBe('updating')
   });
 
   it('should respond with a 200 for PUT on /book/:id', async () => {
@@ -86,7 +88,7 @@ describe('Testing our express server', () => {
       title: 'updating'
     });
     expect(response.status).toBe(200);
-    expect(response.body.title).toEqual('updating')
+    expect(response.body.title).toBe('updating')
   });
 
   // Destroy a record using DELETE
