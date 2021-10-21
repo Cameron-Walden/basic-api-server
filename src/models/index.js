@@ -21,9 +21,9 @@ const { Sequelize, DataTypes } = require('sequelize');
 //   : {};
 
 
-const sequelizeInstance = new Sequelize(DATABASE_URL);
-// const bookTable = bookModel(sequelize, Datatypes);
-// const movieTable = movieModel(sequelize, Datatypes)
+const sequelizeInstance = new Sequelize('sqlite:memory');
+// const bookTable = bookModel(sequelizeInstance, Datatypes);
+// const movieTable = movieModel(sequelizeInstance, Datatypes)
 
 module.exports = {
   db: sequelizeInstance,
