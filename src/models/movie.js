@@ -9,7 +9,7 @@ const Movie = (sequelize, DataTypes) => sequelize.define('Movie', {
   },
   genre: {
     typper: DataTypes.STRING,
-    allowNull: true,
+    allowNull: false,
   }
 });
 
